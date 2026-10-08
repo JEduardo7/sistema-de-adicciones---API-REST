@@ -1,12 +1,10 @@
 # Sistema web para la gestión y seguimiento de casos de adicciones
 
-Backend del sistema web desarrollado para la gestión, seguimiento y control de casos relacionados con el consumo de sustancias psicoactivas.
+Backend del sistema web desarrollado para la gestión y seguimiento de casos relacionados con el consumo de sustancias psicoactivas.
 
 El backend proporciona una API REST para la gestión de usuarios, casos y seguimientos, incorporando autenticación mediante JWT y control de acceso según roles.
 
----
-
-## Tecnologías utilizadas
+## Tecnologías
 
 - Java 25
 - Spring Boot 4.1.1
@@ -14,89 +12,135 @@ El backend proporciona una API REST para la gestión de usuarios, casos y seguim
 - Spring Data JPA
 - Spring Security
 - JWT
-- OAuth2 Resource Server
 - Hibernate
 - PostgreSQL
 - Neon
 - Maven
 - Swagger / OpenAPI
 
----
-
 ## Arquitectura
 
-El backend está desarrollado utilizando una arquitectura basada en capas:
+El backend utiliza una arquitectura por capas que permite separar las responsabilidades de cada componente:
 
-Controller
-    ↓
-Service
-    ↓
-Repository
-    ↓
-Entity
-    ↓
-PostgreSQL / Neon
+- **Controller:** recibe y responde las solicitudes HTTP de la API REST.
+- **Service:** contiene la lógica de negocio.
+- **Repository:** gestiona el acceso a los datos mediante Spring Data JPA.
+- **Entity:** representa las entidades principales del sistema.
 
-Esta organización permite separar las responsabilidades del backend y facilita el mantenimiento y evolución del sistema.
-
----
-
-## Principales componentes
-
-### Controller
-
-Gestiona las solicitudes HTTP recibidas por la API REST.
-
-### Service
-
-Contiene la lógica de negocio necesaria para procesar las operaciones del sistema.
-
-### Repository
-
-Gestiona el acceso a los datos mediante Spring Data JPA.
-
-### Entity
-
-Representa las principales entidades utilizadas por el sistema, como usuarios, casos y seguimientos.
-
----
+Esta organización facilita el mantenimiento y permite trabajar de manera independiente cada parte del backend.
 
 ## Seguridad
 
-El backend utiliza Spring Security y JWT para implementar la autenticación y autorización.
+La autenticación y autorización se implementan mediante Spring Security y JWT.
 
-El sistema contempla dos roles principales:
+El sistema cuenta con dos roles principales:
 
 - ADMINISTRADOR
 - PROFESIONAL
 
-El acceso a los recursos se controla de acuerdo con los permisos correspondientes a cada rol.
-
----
+Los permisos se controlan de acuerdo con el rol del usuario autenticado. Los profesionales tienen acceso a los casos que les corresponden, mientras que el administrador cuenta con acceso general a la información y funcionalidades administrativas.
 
 ## API REST
 
-La API permite realizar operaciones relacionadas con:
+La API proporciona servicios para las principales operaciones del sistema:
 
-- Autenticación de usuarios
-- Gestión de usuarios
-- Gestión de casos
-- Gestión de seguimientos
+- Autenticación de usuarios.
+- Gestión de usuarios.
+- Gestión de casos.
+- Gestión de seguimientos.
+- Consulta de información.
+- Control de acceso según roles.
 
-La documentación de los endpoints se encuentra disponible mediante Swagger / OpenAPI.
-
----
+La documentación de los endpoints está disponible mediante Swagger / OpenAPI.
 
 ## Base de datos
 
-Durante las primeras etapas del desarrollo se utilizó MySQL como sistema gestor de base de datos.
+Durante las primeras etapas del desarrollo se utilizó MySQL como base de datos para el desarrollo y las pruebas.
 
 Posteriormente, como parte de la preparación del sistema para su despliegue, se realizó la migración a PostgreSQL utilizando Neon.
 
-La versión final desplegada utiliza PostgreSQL como sistema gestor de base de datos y Neon como servicio de alojamiento de la base de datos.
+La versión actualmente desplegada utiliza PostgreSQL como sistema gestor de base de datos y Neon como servicio de alojamiento.
 
----
+## Requisitos
 
-## Proyecto
+Para ejecutar el backend localmente se necesita:
 
-Sistema web desarrollado para la gestión y seguimiento de casos de adicciones, integrando frontend Angular, backend Spring Boot y una base de datos PostgreSQL.
+- Java 25
+- Maven
+- PostgreSQL
+- IDE compatible con Java, como Visual Studio Code o IntelliJ IDEA
+
+## Ejecución
+
+Clonar el repositorio:
+
+```bash
+git clone https://github.com/JEduardo7/sistema-de-adicciones-backend.git
+```
+
+Ingresar a la carpeta del proyecto:
+
+```bash
+cd sistema-de-adicciones-backend
+```
+
+Ejecutar el proyecto con Maven:
+
+```bash
+./mvnw spring-boot:run
+```
+
+En Windows también se puede utilizar:
+
+```bash
+mvnw.cmd spring-boot:run
+```
+
+El backend se ejecuta localmente en:
+
+```text
+http://localhost:8080
+```
+
+## Documentación de la API
+
+La API cuenta con documentación interactiva mediante Swagger:
+
+https://sistema-de-adicciones-api-rest.onrender.com/swagger-ui/index.html
+
+También se encuentra disponible la especificación OpenAPI:
+
+https://sistema-de-adicciones-api-rest.onrender.com/v3/api-docs
+
+## Backend desplegado
+
+El backend se encuentra desplegado en Render:
+
+https://sistema-de-adicciones-api-rest.onrender.com/
+
+## Disponibilidad del servicio
+
+El backend se encuentra desplegado en Render. Después de un periodo de inactividad, la primera solicitud puede tardar unos segundos mientras el servicio vuelve a estar disponible.
+Una vez activo, las solicitudes funcionan con normalidad.
+
+## Frontend
+
+El backend es consumido por la aplicación frontend desarrollada con Angular.
+
+Repositorio del frontend:
+
+https://github.com/JEduardo7/sistema-de-adicciones-frontend
+
+Aplicación desplegada:
+
+https://sistema-de-adicciones.vercel.app/
+
+## Curso
+
+**Soluciones Web y Aplicaciones Distribuidas**
+
+Facultad de Ingeniería  
+Carrera de Ingeniería de Sistemas Computacionales
+
+Cajamarca – Perú  
+2026
