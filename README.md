@@ -13,6 +13,7 @@ El backend proporciona una API REST para la gestión de usuarios, casos y seguim
 - Spring Security
 - JWT
 - Hibernate
+- MySQL (desarrollo inicial)
 - PostgreSQL
 - Neon
 - Maven
@@ -59,15 +60,15 @@ Durante las primeras etapas del desarrollo se utilizó MySQL como base de datos 
 
 Posteriormente, como parte de la preparación del sistema para su despliegue, se realizó la migración a PostgreSQL utilizando Neon.
 
-La versión actualmente desplegada utiliza PostgreSQL como sistema gestor de base de datos y Neon como servicio de alojamiento.
+La versión actualmente desplegada utiliza PostgreSQL como sistema gestor de base de datos y Neon como servicio de alojamiento. Para el desarrollo local se utiliza MySQL.
 
 ## Requisitos
 
 Para ejecutar el backend localmente se necesita:
 
 - Java 25
-- Maven
-- PostgreSQL
+- MySQL Server 8.0 o superior
+- Maven Wrapper incluido en el proyecto
 - IDE compatible con Java, como Visual Studio Code o IntelliJ IDEA
 
 ## Ejecución
@@ -84,23 +85,19 @@ Ingresar a la carpeta del proyecto:
 cd sistema-de-adicciones-backend
 ```
 
-Ejecutar el proyecto con Maven:
+Para ejecutar el backend localmente con MySQL, configurar primero el archivo `src/main/resources/application-local.properties` con las credenciales propias del entorno local.
 
-```bash
-./mvnw spring-boot:run
+En Windows, ejecutar desde la carpeta del backend:
+
+```powershell
+.\mvnw.cmd spring-boot:run "-Dspring-boot.run.profiles=local"
 ```
 
-En Windows también se puede utilizar:
+El backend local estará disponible en:
 
-```bash
-mvnw.cmd spring-boot:run
-```
-
-El backend se ejecuta localmente en:
-
-```text
 http://localhost:8080
-```
+
+Las credenciales y claves secretas locales no deben publicarse en GitHub.
 
 ## Documentación de la API
 
@@ -120,8 +117,7 @@ https://sistema-de-adicciones-api-rest.onrender.com/
 
 ## Disponibilidad del servicio
 
-El backend se encuentra desplegado en Render. Después de un periodo de inactividad, la primera solicitud puede tardar unos segundos mientras el servicio vuelve a estar disponible.
-Una vez activo, las solicitudes funcionan con normalidad.
+El backend se encuentra desplegado en Render. Después de un periodo de inactividad, la primera solicitud puede tardar unos segundos mientras el servicio vuelve a estar disponible. Una vez activo, las solicitudes funcionan con normalidad.
 
 ## Frontend
 
